@@ -1,0 +1,42 @@
+<header class="w-full flex flex-col lg:flex-row bg-violet-950 text-violet-50 justify-between p-2 font-bold items-center">
+    <a href='/' class="flex items-center justify-center lg:justify-start">
+        <img width="162" height="43" src='https://www.anytimefitness.com/wp-content/uploads/2021/12/anytime-fitness-logo.png' alt='logo' class="w-24 h-auto lg:w-auto lg:h-12" />
+    </a>
+    <div class='flex flex-col lg:flex-row lg:ml-4'>
+        <p class='capitalize p-2 cursor-pointer lg:mx-2'>Encontrar un gimnasio</p>
+        <p class="capitalize p-2 cursor-pointer lg:mx-2">Capacitación</p>
+        <p class="capitalize p-2 cursor-pointer lg:mx-2">Blog</p>
+        <p class="capitalize p-2 cursor-pointer lg:mx-2">¿Por qué unirse?</p>
+        <a href="/chat/" class="capitalize p-2 cursor-pointer lg:mx-2">Chat</a>
+    </div>
+    <div class="lg:mt-0">
+        <button id="loginButton" class="uppercase border rounded-3xl w-44 lg:w-48 h-10 bg-violet-700 border-violet-700">Iniciar sesión</button>
+        <button id="logoutButton" class="uppercase border rounded-3xl w-44 lg:w-48 h-10 bg-violet-700 border-violet-700 hidden">Cerrar sesión</button>
+    </div>
+
+    <script>
+        const btnLogin = document.getElementById('loginButton');
+        const btnLogout = document.getElementById('logoutButton');
+
+        btnLogin.addEventListener('click', () => {
+            window.location.href = '/login/';
+        });
+
+        btnLogout.addEventListener('click', () => {
+            localStorage.removeItem('token');
+            // Redirigir o realizar cualquier otra acción necesaria después de cerrar sesión
+            window.location.href = '/'; // Redireccionar a la página principal, por ejemplo
+            // Otros pasos para finalizar la sesión
+        });
+
+        // Verificar si existe el token en localStorage para mostrar u ocultar los botones
+        const token = localStorage.getItem('token');
+        if (token) {
+            btnLogin.style.display = 'none';
+            btnLogout.style.display = 'block';
+        } else {
+            btnLogin.style.display = 'block';
+            btnLogout.style.display = 'none';
+        }
+    </script>
+</header>
